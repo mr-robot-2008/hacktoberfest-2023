@@ -1,0 +1,88 @@
+<!-- Created by https://github.com/arizkinewbie -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jarak Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .converter {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h2 {
+            margin: 0 0 20px;
+        }
+
+        label, input {
+            display: block;
+            margin: 10px 0;
+        }
+
+        input[type="number"], input[type="text"] {
+            width: 100%;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="converter">
+        <h2>Jarak Converter</h2>
+        <label for="inputKilometers">Kilometers:</label>
+        <input type="number" id="inputKilometers" placeholder="Enter kilometers">
+        <label for="resultMiles">Miles:</label>
+        <input type="text" id="resultMiles" disabled>
+        <label for="inputMiles">Miles:</label>
+        <input type="number" id="inputMiles" placeholder="Enter miles">
+        <label for="resultKilometers">Kilometers:</label>
+        <input type="text" id="resultKilometers" disabled>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const inputKilometers = document.getElementById("inputKilometers");
+            const resultMiles = document.getElementById("resultMiles");
+            const inputMiles = document.getElementById("inputMiles");
+            const resultKilometers = document.getElementById("resultKilometers");
+
+            inputKilometers.addEventListener("input", convertKilometersToMiles);
+            inputMiles.addEventListener("input", convertMilesToKilometers);
+
+            function convertKilometersToMiles() {
+                const kilometers = parseFloat(inputKilometers.value);
+                if (!isNaN(kilometers)) {
+                    const miles = kilometers * 0.621371;
+                    resultMiles.value = miles.toFixed(2);
+                } else {
+                    resultMiles.value = "";
+                }
+            }
+
+            function convertMilesToKilometers() {
+                const miles = parseFloat(inputMiles.value);
+                if (!isNaN(miles)) {
+                    const kilometers = miles / 0.621371;
+                    resultKilometers.value = kilometers.toFixed(2);
+                } else {
+                    resultKilometers.value = "";
+                }
+            }
+        });
+    </script>
+</body>
+</html>
